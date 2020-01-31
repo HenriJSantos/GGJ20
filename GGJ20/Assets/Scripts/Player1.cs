@@ -9,5 +9,6 @@ public class Player1 : Player
         base.Start();
         this.hor_key = "Horizontal_1";
         this.ver_key = "Vertical_1";
+        this.grab_key = "Grab_1";
     }
 }

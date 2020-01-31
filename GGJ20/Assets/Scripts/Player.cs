@@ -14,6 +14,12 @@ abstract public class Player : MonoBehaviour
     protected string ver_key;
 
     private bool jumping;
+    private bool canGrab;
+
+    private GameObject item;
+    private int itemNum;
+
+    protected string grab_key;
 
     public virtual void Start()
     {
@@ -24,15 +30,20 @@ abstract public class Player : MonoBehaviour
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
 
         this.jumping = false;
+        this.canGrab = false;
+
+        this.item = null;
+        this.itemNum = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         Move();
+        Grab();
     }
 
-    public void Move()
+    private void Move()
     {
         if (Input.GetButton(this.hor_key))
         {
@@ -44,11 +55,23 @@ abstract public class Player : MonoBehaviour
             }
             HorizontalMove(value);
         }
-        else if (Input.GetButtonDown(this.ver_key) && !this.jumping)
+
+        if (Input.GetButtonDown(this.ver_key) && !this.jumping)
         {
             VerticalMove(this.ver_val);
         }
     }
+
+    private void Grab()
+    {
+        if (canGrab && Input.GetButton(this.grab_key))
+        {
+            Destroy(this.item);
+            this.item = null;
+            this.canGrab = false;
+        }
+    }
+
 
     protected void HorizontalMove(float value)
     {
@@ -66,6 +89,32 @@ abstract public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             this.jumping = false;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) 
+    {
+        //TODO Change tag name
+        if (collision.gameObject.CompareTag("Grab"))
+        {
+            this.canGrab = true;
+            this.item = collision.gameObject;
+        }
+        else if (collision.gameObject.CompareTag("Item"))
+        {
+            Destroy(collision.gameObject);
+            this.itemNum++;
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        //TODO Change tag name
+        if (collision.gameObject.CompareTag("Grab"))
+        {
+            this.canGrab = false;
+            this.item = null;
         }
     }
 }
