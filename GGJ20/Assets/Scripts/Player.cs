@@ -5,6 +5,7 @@ using UnityEngine;
 abstract public class Player : MonoBehaviour
 {
     private GameObject player;
+    Rigidbody2D rig_body;
 
     public float hor_val;
     protected string hor_key;
@@ -12,13 +13,17 @@ abstract public class Player : MonoBehaviour
     public float ver_val;
     protected string ver_key;
 
+    private bool jumping;
+
     public virtual void Start()
     {
-        hor_val = 1;
-        ver_val = 1;
+        hor_val = .1f;
+        ver_val = 5;
 
         this.player = this.gameObject;
-        Debug.Log(this.player);
+        this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
+
+        this.jumping = false;
     }
 
     // Update is called once per frame
@@ -39,15 +44,9 @@ abstract public class Player : MonoBehaviour
             }
             HorizontalMove(value);
         }
-        else if (Input.GetButtonDown(this.ver_key))
+        else if (Input.GetButtonDown(this.ver_key) && !this.jumping)
         {
-            float value = this.ver_val;
-
-            if (Input.GetAxisRaw(this.ver_key) < 0)
-            {
-                value *= -1;
-            }
-            VerticalMove(value);
+            VerticalMove(this.ver_val);
         }
     }
 
@@ -58,6 +57,15 @@ abstract public class Player : MonoBehaviour
 
     protected void VerticalMove(float value)
     {
-        this.player.transform.Translate(new Vector3(0, value, 0));
+        this.rig_body.velocity = transform.up*value;
+        this.jumping = true;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Floor"))
+        {
+            this.jumping = false;
+        }
     }
 }
