@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Floor
   - Item
+  - Grab
   layers:
   - Default
   - TransparentFX
