@@ -113,9 +113,12 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Door")))
+        if (!this.canGrab && collision.gameObject.CompareTag("Grab"))
         {
             this.canGrab = true;
+            this.colliding_item = collision.gameObject;
+        }
+        else if(collision.gameObject.CompareTag("Door")){
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
