@@ -17,6 +17,9 @@ public class Player2 : Player
     protected override void InteractAction()
     {
         if(this.item == null && this.colliding_item != null) {
+            if(!this.colliding_item.CompareTag("Box")){
+                return;
+            }
             this.item = this.colliding_item;
             this.item.transform.parent = this.gameObject.transform;
             this.item.transform.position = this.gameObject.transform.position;
