@@ -9,6 +9,7 @@ TagManager:
   - Grab
   - Player1
   - Player2
+  - Door
   layers:
   - Default
   - TransparentFX
