@@ -14,14 +14,17 @@ public class Player1 : Player
 
     protected override void InteractAction()
     {
-        Debug.Log(colliding_item);
-        if(this.colliding_item.CompareTag("Door")){
-            Door door = this.colliding_item.GetComponent<Door>();
-            door.unlockDoor();
+        if(this.colliding_item.CompareTag("DoorLock")){
+            DoorLock doorLock = this.colliding_item.GetComponent<DoorLock>();
+            doorLock.ChangeLock();
         }
         else if(this.colliding_item.CompareTag("Switch")) {
             Switch sw = this.colliding_item.GetComponent<Switch>();
             sw.unlockSwitch();
 		}
+        else if(this.colliding_item.CompareTag("Door")) {
+            Door door = this.colliding_item.GetComponent<Door>();
+            door.Enter();
+        }
     }
 }

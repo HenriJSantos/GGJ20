@@ -17,6 +17,11 @@ public class Player2 : Player
     protected override void InteractAction()
     {
         if(this.item == null && this.colliding_item != null) {
+            if(this.colliding_item.CompareTag("Door")) {
+                Door door = this.colliding_item.GetComponent<Door>();
+                door.Enter();
+                return;
+            }
             if(!this.colliding_item.CompareTag("Box")){
                 return;
             }

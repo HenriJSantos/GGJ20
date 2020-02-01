@@ -18,7 +18,7 @@ public class Switch : MonoBehaviour
         this.interruptor.sprite = this.locked;
     }
 
-    /*private void OnTriggerEnter2D(Collider2D collision) 
+    private void OnTriggerEnter2D(Collider2D collision) 
     {
         if (collision.gameObject.CompareTag("Player1") && this.isLocked)
         {
@@ -31,7 +31,7 @@ public class Switch : MonoBehaviour
 			}
 
         }
-    }*/
+    }
 
     public void unlockSwitch(){
         if (this.isLocked)
