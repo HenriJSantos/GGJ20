@@ -25,6 +25,10 @@ abstract public class Player : MonoBehaviour
 
     protected string grab_key;
 
+    // HEALTH
+    public GameObject playerHealth;
+    private int lives = 3;
+
     public virtual void Start()
     {
         this.player = this.gameObject;
@@ -157,6 +161,22 @@ abstract public class Player : MonoBehaviour
         {
             this.canGrab = false;
             this.colliding_item = null;
+        }
+    }
+
+    public void Damage()
+    {
+        this.lives--;
+        int i = 0;
+
+        foreach (Transform child in this.playerHealth.transform)
+        {
+            if(this.lives == i)
+            {
+                child.gameObject.SetActive(false);
+                break;
+            }
+            i++;
         }
     }
 }
