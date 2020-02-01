@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    public string nextScene;
     public Sprite unlocked;
     public Sprite locked;
     public Sprite open;
@@ -80,5 +82,11 @@ public class Door : MonoBehaviour
     public void LockDoor(){
         isLocked = true;
         this.door.sprite = locked;
+    }
+
+    public void Enter(){
+        if(this.isOpen) {
+            SceneManager.LoadScene(nextScene);
+        }
     }
 }

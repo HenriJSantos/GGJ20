@@ -15,7 +15,6 @@ public class Player1 : Player
     protected override void InteractAction()
     {
         if(this.colliding_item.CompareTag("DoorLock")){
-            Debug.Log("heh");
             DoorLock doorLock = this.colliding_item.GetComponent<DoorLock>();
             doorLock.ChangeLock();
         }
@@ -23,5 +22,9 @@ public class Player1 : Player
             Switch sw = this.colliding_item.GetComponent<Switch>();
             sw.unlockSwitch();
 		}
+        else if(this.colliding_item.CompareTag("Door")) {
+            Door door = this.colliding_item.GetComponent<Door>();
+            door.Enter();
+        }
     }
 }
