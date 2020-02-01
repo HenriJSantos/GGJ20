@@ -75,6 +75,7 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
+        Debug.Log(this.canGrab);
         if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -129,7 +130,7 @@ abstract public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if (!this.canGrab && collision.gameObject.CompareTag("Switch"))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Switch") || collision.gameObject.CompareTag("DoorLock") || collision.gameObject.CompareTag("Door")))
         {
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
@@ -145,6 +146,13 @@ abstract public class Player : MonoBehaviour
         //TODO Change tag name
         if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
         {
+            this.canGrab = false;
+            this.colliding_item = null;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.gameObject.CompareTag("DoorLock")) {
             this.canGrab = false;
             this.colliding_item = null;
         }
