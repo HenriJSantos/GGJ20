@@ -6,6 +6,7 @@ abstract public class Player : MonoBehaviour
 {
     private GameObject player;
     Rigidbody2D rig_body;
+    private Animator animator;
 
     public float hor_val;
     protected string hor_key;
@@ -28,6 +29,10 @@ abstract public class Player : MonoBehaviour
 
         this.player = this.gameObject;
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
+        this.animator = this.gameObject.GetComponent<Animator>();
+
+        this.animator.SetBool("Walking", false);
+        this.animator.SetBool("Jumping", false);
 
         this.jumping = false;
         this.canGrab = false;
@@ -47,6 +52,7 @@ abstract public class Player : MonoBehaviour
     {
         if (Input.GetButton(this.hor_key))
         {
+            this.animator.SetBool("Walking", true);
             float value = this.hor_val;
 
             if(Input.GetAxisRaw(this.hor_key) < 0)
@@ -54,6 +60,10 @@ abstract public class Player : MonoBehaviour
                 value *= -1;
             }
             HorizontalMove(value);
+        }
+        else
+        {
+            this.animator.SetBool("Walking", false);
         }
 
         if (Input.GetButtonDown(this.ver_key) && !this.jumping)
@@ -82,6 +92,7 @@ abstract public class Player : MonoBehaviour
     {
         this.rig_body.velocity = transform.up*value;
         this.jumping = true;
+        this.animator.SetBool("Jumping", true);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -89,6 +100,7 @@ abstract public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Floor"))
         {
             this.jumping = false;
+            this.animator.SetBool("Jumping", false);
         }
     }
 
