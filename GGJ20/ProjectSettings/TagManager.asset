@@ -7,6 +7,8 @@ TagManager:
   - Floor
   - Item
   - Grab
+  - Player1
+  - Player2
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - 
   - Player1
   - Player2
-  - 
+  - Door
   - 
   - 
   - 
