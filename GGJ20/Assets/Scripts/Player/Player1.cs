@@ -10,5 +10,14 @@ public class Player1 : Player
         this.hor_key = "Horizontal_1";
         this.ver_key = "Vertical_1";
         this.grab_key = "Grab_1";
+        ver_val = 6;
+    }
+
+    protected override void InteractAction()
+    {
+        if(this.colliding_item.CompareTag("Door")){
+            Door door = this.colliding_item.GetComponent<Door>();
+            door.unlockDoor();
+        }
     }
 }
