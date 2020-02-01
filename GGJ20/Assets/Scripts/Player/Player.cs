@@ -104,13 +104,18 @@ abstract public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Box"))
         {
             this.jumping = false;
             this.animator.SetBool("Jumping", false);
         }
+        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
+        {
+            this.canGrab = true;
+            this.colliding_item = collision.gameObject;
+        }
     }
-
+/*
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
@@ -130,8 +135,8 @@ abstract public class Player : MonoBehaviour
         }
 
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
+*/
+    private void OnCollisionExit2D(Collision2D collision)
     {
         //TODO Change tag name
         if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
