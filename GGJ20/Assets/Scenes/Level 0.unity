@@ -5478,6 +5478,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: Level 1
+  offset: 0
 --- !u!61 &748099202
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12156,7 +12157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed50f8daffa25924791b3c43af0ca871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hor_val: 0.1
+  hor_val: 0.06
   ver_val: 6
 --- !u!212 &1861991118
 SpriteRenderer:
@@ -13869,7 +13870,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e29513c106a7f44e90fbae6caca80f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hor_val: 0.1
+  hor_val: 0.05
   ver_val: 5
 --- !u!212 &2134280491
 SpriteRenderer:

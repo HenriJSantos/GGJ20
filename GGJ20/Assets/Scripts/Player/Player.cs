@@ -28,6 +28,7 @@ abstract public class Player : MonoBehaviour
     public virtual void Start()
     {
         this.player = this.gameObject;
+        transform.position = transform.position + new Vector3(GameVars.positionOffset,0,0);
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
         this.animator = this.gameObject.GetComponent<Animator>();
 
