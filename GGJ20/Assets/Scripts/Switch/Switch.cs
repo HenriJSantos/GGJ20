@@ -24,6 +24,12 @@ public class Switch : MonoBehaviour
         {
             this.isLocked = false;
             this.interruptor.sprite = this.unlocked;
+            GameObject[] acid_waters = GameObject.FindGameObjectsWithTag("Acid");
+
+            for (int i = 0; i < acid_waters.Length; i++) {
+                Destroy(acid_waters[i]);     
+			}
+
         }
     }
 
