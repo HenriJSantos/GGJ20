@@ -12,6 +12,9 @@ TagManager:
   - Door
   - Box
   - Held
+  - Acid
+  - Switch
+  - DoorLock
   layers:
   - Default
   - TransparentFX

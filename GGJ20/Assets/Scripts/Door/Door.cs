@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
+    public string nextScene;
     public Sprite unlocked;
     public Sprite locked;
     public Sprite open;
@@ -26,7 +28,6 @@ public class Door : MonoBehaviour
         this.player1Light = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         this.player2Light = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         door.sprite = locked;
-        
         
         player1 = false;
         player2 = false;
@@ -73,9 +74,19 @@ public class Door : MonoBehaviour
             this.door.sprite = unlocked;
     }
 
-    public void unlockDoor(){
+    public void UnlockDoor(){
         isLocked = false;
         this.door.sprite = unlocked;
     }
 
+    public void LockDoor(){
+        isLocked = true;
+        this.door.sprite = locked;
+    }
+
+    public void Enter(){
+        if(this.isOpen) {
+            SceneManager.LoadScene(nextScene);
+        }
+    }
 }

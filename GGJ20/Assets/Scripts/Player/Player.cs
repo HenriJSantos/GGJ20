@@ -25,6 +25,10 @@ abstract public class Player : MonoBehaviour
 
     protected string grab_key;
 
+    // HEALTH
+    public GameObject playerHealth;
+    private int lives = 3;
+
     public virtual void Start()
     {
         this.player = this.gameObject;
@@ -75,6 +79,7 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
+        Debug.Log(this.canGrab);
         if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -132,14 +137,14 @@ abstract public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        if (!this.canGrab && collision.gameObject.CompareTag("Switch"))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Switch") || collision.gameObject.CompareTag("DoorLock") || collision.gameObject.CompareTag("Door")))
         {
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
         {
-            Destroy(this.player);
+            Damage();
         }
     }
 
@@ -148,6 +153,29 @@ abstract public class Player : MonoBehaviour
         //TODO Change tag name
         if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
         {
+            this.canGrab = false;
+            this.colliding_item = null;
+        }
+    }
+
+    public void Damage()
+    {
+        this.lives--;
+        int i = 0;
+
+        foreach (Transform child in this.playerHealth.transform)
+        {
+            if (this.lives == i)
+            {
+                child.gameObject.SetActive(false);
+                break;
+            }
+            i++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.gameObject.CompareTag("DoorLock")) {
             this.canGrab = false;
             this.colliding_item = null;
         }
