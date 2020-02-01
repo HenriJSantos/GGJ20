@@ -77,6 +77,7 @@ abstract public class Player : MonoBehaviour
     {
         if (this.canGrab && Input.GetButtonDown(this.grab_key))
         {
+            Debug.Log("CONA");
             InteractAction();
         }
         else if (Input.GetButtonDown(this.grab_key) && this.item != null)
@@ -126,30 +127,20 @@ abstract public class Player : MonoBehaviour
             this.colliding_item = collision.gameObject;
         }
     }
-/*
+
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
+        if (!this.canGrab && collision.gameObject.CompareTag("Switch"))
         {
             this.canGrab = true;
-            this.colliding_item = collision.gameObject;
-        }
-        else if(collision.gameObject.CompareTag("Door")){
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
         {
             Destroy(this.player);
         }
-        else if (collision.gameObject.CompareTag("Item"))
-        {
-            Destroy(collision.gameObject);
-            this.itemNum++;
-        }
-
     }
-*/
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         //TODO Change tag name
