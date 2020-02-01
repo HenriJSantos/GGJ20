@@ -11,6 +11,7 @@ TagManager:
   - Player2
   - Door
   - Box
+  - Held
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Player2
   - Door
   - Background
-  - 
+  - Held
   - 
   - 
   - 
