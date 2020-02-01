@@ -15,9 +15,12 @@ abstract public class Player : MonoBehaviour
     protected string ver_key;
 
     private bool jumping;
-    private bool canGrab;
+    protected bool canGrab;
 
-    private GameObject item;
+    protected GameObject colliding_item;
+
+    protected GameObject item; //Player 2 box
+
     private int itemNum;
 
     protected string grab_key;
@@ -37,7 +40,7 @@ abstract public class Player : MonoBehaviour
         this.jumping = false;
         this.canGrab = false;
 
-        this.item = null;
+        this.colliding_item = null;
         this.itemNum = 0;
     }
 
@@ -45,7 +48,7 @@ abstract public class Player : MonoBehaviour
     void Update()
     {
         Move();
-        Grab();
+        Interact();
     }
 
     private void Move()
@@ -72,15 +75,21 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    private void Grab()
+    private void Interact()
     {
-        if (canGrab && Input.GetButton(this.grab_key))
+        if (this.canGrab && Input.GetButtonDown(this.grab_key))
         {
-            Destroy(this.item);
+            InteractAction();
+        }
+        else if (Input.GetButtonDown(this.grab_key) && this.item != null)
+        {
+            this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             this.item = null;
             this.canGrab = false;
         }
     }
+
+    abstract protected void InteractAction();
 
 
     protected void HorizontalMove(float value)
@@ -107,10 +116,10 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
-        if (collision.gameObject.CompareTag("Grab"))
+        if (!this.canGrab && collision.gameObject.CompareTag("Grab"))
         {
             this.canGrab = true;
-            this.item = collision.gameObject;
+            this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Item"))
         {
@@ -126,7 +135,7 @@ abstract public class Player : MonoBehaviour
         if (collision.gameObject.CompareTag("Grab"))
         {
             this.canGrab = false;
-            this.item = null;
+            this.colliding_item = null;
         }
     }
 }

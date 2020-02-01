@@ -12,4 +12,9 @@ public class Player1 : Player
         this.grab_key = "Grab_1";
         ver_val = 6;
     }
+
+    protected override void InteractAction()
+    {
+
+    }
 }
