@@ -283,9 +283,10 @@ GameObject:
   - component: {fileID: 169567745}
   - component: {fileID: 169567743}
   - component: {fileID: 169567742}
+  - component: {fileID: 169567744}
   m_Layer: 0
   m_Name: Item
-  m_TagString: Item
+  m_TagString: Grab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -327,6 +328,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &169567744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169567741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53d203fc410f4c444b65f082288276ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &169567745
 SpriteRenderer:
   m_ObjectHideFlags: 0
