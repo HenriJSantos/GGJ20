@@ -39,8 +39,6 @@ public class Door : MonoBehaviour
         {
             player1 = true;
             this.player1Light.sprite = lightOn;
-            isLocked = false;
-            this.door.sprite = unlocked;
         }
         if (collision.gameObject.CompareTag("Player2"))
         {
@@ -69,8 +67,15 @@ public class Door : MonoBehaviour
         }
         
         isOpen = false;
-        if(this.isLocked) this.door.sprite = locked;
-        else this.door.sprite = unlocked;
+        if(this.isLocked) 
+            this.door.sprite = locked;
+        else 
+            this.door.sprite = unlocked;
+    }
+
+    public void unlockDoor(){
+        isLocked = false;
+        this.door.sprite = unlocked;
     }
 
 }
