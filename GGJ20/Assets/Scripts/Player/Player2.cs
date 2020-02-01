@@ -23,9 +23,11 @@ public class Player2 : Player
 
             Rigidbody2D rb = this.item.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Kinematic;
-            this.item.transform.Translate(new Vector2(1f, .75f));
+            this.item.transform.Translate(new Vector2(0, 2f));
             this.canGrab = false;
             rb.gravityScale = 1;
+
+            this.animator.SetTrigger("Grab");
         }
     }
 }

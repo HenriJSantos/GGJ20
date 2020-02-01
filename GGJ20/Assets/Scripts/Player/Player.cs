@@ -6,7 +6,7 @@ abstract public class Player : MonoBehaviour
 {
     private GameObject player;
     Rigidbody2D rig_body;
-    private Animator animator;
+    protected Animator animator;
 
     public float hor_val;
     protected string hor_key;
@@ -84,6 +84,8 @@ abstract public class Player : MonoBehaviour
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             this.item = null;
             this.canGrab = false;
+
+            this.animator.SetTrigger("PutDown");
         }
     }
 
@@ -93,6 +95,15 @@ abstract public class Player : MonoBehaviour
     protected void HorizontalMove(float value)
     {
         this.player.transform.Translate(new Vector3(value, 0, 0));
+
+        if(value < 0)
+        {
+            this.player.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.player.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     protected void VerticalMove(float value)
@@ -119,9 +130,12 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Door") || collision.gameObject.CompareTag("Box")))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
         {
             this.canGrab = true;
+            this.colliding_item = collision.gameObject;
+        }
+        else if(collision.gameObject.CompareTag("Door")){
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
