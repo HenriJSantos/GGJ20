@@ -11,6 +11,9 @@ TagManager:
   - Player2
   - Door
   - Box
+  - Acid
+  - Switch
+  - DoorLock
   layers:
   - Default
   - TransparentFX

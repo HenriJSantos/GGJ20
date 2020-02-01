@@ -19,7 +19,6 @@ public class DoorLock : MonoBehaviour
     }
 
     public void ChangeLock(){
-        Debug.Log("heh");
         if(isLocked){
             this.door.UnlockDoor();
             this.isLocked = false;
