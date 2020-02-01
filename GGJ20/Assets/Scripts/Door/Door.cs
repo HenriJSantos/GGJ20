@@ -27,7 +27,6 @@ public class Door : MonoBehaviour
         this.player2Light = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
         door.sprite = locked;
         
-        
         player1 = false;
         player2 = false;
     }
@@ -73,9 +72,13 @@ public class Door : MonoBehaviour
             this.door.sprite = unlocked;
     }
 
-    public void unlockDoor(){
+    public void UnlockDoor(){
         isLocked = false;
         this.door.sprite = unlocked;
     }
 
+    public void LockDoor(){
+        isLocked = true;
+        this.door.sprite = locked;
+    }
 }

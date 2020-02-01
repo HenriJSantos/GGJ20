@@ -79,11 +79,7 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
-        if (this.canGrab && Input.GetButtonDown(this.grab_key))
-        {
-            InteractAction();
-        }
-        else if (Input.GetButtonDown(this.grab_key) && this.item != null)
+        if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             this.item = null;
@@ -91,12 +87,16 @@ abstract public class Player : MonoBehaviour
 
             this.animator.SetTrigger("PutDown");
         }
+        else if (this.canGrab && Input.GetButtonDown(this.grab_key))
+        {
+            InteractAction();
+        }
     }
 
     abstract protected void InteractAction();
 
 
-    protected void HorizontalMove(float value)
+    protected virtual void HorizontalMove(float value)
     {
         this.player.transform.Translate(new Vector3(value, 0, 0));
 
@@ -130,30 +130,20 @@ abstract public class Player : MonoBehaviour
             this.colliding_item = collision.gameObject;
         }
     }
-/*
+
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
+        if (!this.canGrab && collision.gameObject.CompareTag("Switch"))
         {
             this.canGrab = true;
-            this.colliding_item = collision.gameObject;
-        }
-        else if(collision.gameObject.CompareTag("Door")){
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
         {
             Destroy(this.player);
         }
-        else if (collision.gameObject.CompareTag("Item"))
-        {
-            Destroy(collision.gameObject);
-            this.itemNum++;
-        }
-
     }
-*/
+
     private void OnCollisionExit2D(Collision2D collision)
     {
         //TODO Change tag name
