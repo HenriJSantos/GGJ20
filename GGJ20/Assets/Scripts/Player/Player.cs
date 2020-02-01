@@ -114,7 +114,7 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Door")))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Door") || collision.gameObject.CompareTag("Box")))
         {
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
@@ -134,7 +134,7 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //TODO Change tag name
-        if (collision.gameObject.CompareTag("Grab"))
+        if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
         {
             this.canGrab = false;
             this.colliding_item = null;
