@@ -12,18 +12,6 @@ public class ScrollTex : MonoBehaviour
     void Start()
     {
         material = GetComponent<SpriteRenderer>().material;
-
-        Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-
-        var croppedTexture = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height);
-        var pixels = sprite.texture.GetPixels((int)sprite.textureRect.x,
-                                                (int)sprite.textureRect.y,
-                                                (int)sprite.textureRect.width,
-                                                (int)sprite.textureRect.height);
-        croppedTexture.SetPixels(pixels);
-        croppedTexture.Apply();
-
-        material.mainTexture = croppedTexture;
     }
 
     // Update is called once per frame
