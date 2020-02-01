@@ -140,7 +140,7 @@ abstract public class Player : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Acid"))
         {
-            Destroy(this.player);
+            Damage();
         }
     }
 
