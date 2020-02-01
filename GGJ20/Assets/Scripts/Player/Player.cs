@@ -75,12 +75,7 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
-        if (this.canGrab && Input.GetButtonDown(this.grab_key))
-        {
-            Debug.Log("CONA");
-            InteractAction();
-        }
-        else if (Input.GetButtonDown(this.grab_key) && this.item != null)
+        if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             this.item = null;
@@ -88,12 +83,16 @@ abstract public class Player : MonoBehaviour
 
             this.animator.SetTrigger("PutDown");
         }
+        else if (this.canGrab && Input.GetButtonDown(this.grab_key))
+        {
+            InteractAction();
+        }
     }
 
     abstract protected void InteractAction();
 
 
-    protected void HorizontalMove(float value)
+    protected virtual void HorizontalMove(float value)
     {
         this.player.transform.Translate(new Vector3(value, 0, 0));
 
