@@ -119,6 +119,10 @@ abstract public class Player : MonoBehaviour
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
         }
+        else if (collision.gameObject.CompareTag("Acid"))
+        {
+            Destroy(this.player);
+        }
         else if (collision.gameObject.CompareTag("Item"))
         {
             Destroy(collision.gameObject);
