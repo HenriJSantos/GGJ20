@@ -28,6 +28,7 @@ abstract public class Player : MonoBehaviour
     public virtual void Start()
     {
         this.player = this.gameObject;
+        transform.position = transform.position + new Vector3(GameVars.positionOffset,0,0);
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
         this.animator = this.gameObject.GetComponent<Animator>();
 
@@ -113,7 +114,7 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision) 
     {
         //TODO Change tag name
-        if (!this.canGrab && collision.gameObject.CompareTag("Grab"))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
         {
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
@@ -136,7 +137,7 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //TODO Change tag name
-        if (collision.gameObject.CompareTag("Grab"))
+        if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
         {
             this.canGrab = false;
             this.colliding_item = null;
