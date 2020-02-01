@@ -24,9 +24,6 @@ abstract public class Player : MonoBehaviour
 
     public virtual void Start()
     {
-        hor_val = .1f;
-        ver_val = 5;
-
         this.player = this.gameObject;
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
         this.animator = this.gameObject.GetComponent<Animator>();
