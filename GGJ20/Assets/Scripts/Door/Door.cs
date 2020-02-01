@@ -16,7 +16,7 @@ public class Door : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.gameObject.GetComponent<SpriteRenderer>().sprite = locked;
+        //this.gameObject.GetComponent<SpriteRenderer>().sprite = locked;
         
         player1 = false;
         player2 = false;
