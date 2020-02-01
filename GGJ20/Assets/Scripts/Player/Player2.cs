@@ -23,11 +23,32 @@ public class Player2 : Player
 
             Rigidbody2D rb = this.item.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Kinematic;
-            this.item.transform.Translate(new Vector2(0, 2f));
+            
+            if(this.GetComponent<SpriteRenderer>().flipX){
+                this.item.transform.Translate(new Vector2(-1f, 1f));
+            }
+            else{
+                this.item.transform.Translate(new Vector2(1f, 1f));
+            }
+            
             this.canGrab = false;
             rb.gravityScale = 1;
 
             this.animator.SetTrigger("Grab");
         }
+    }
+
+    protected override void HorizontalMove(float value)
+    {
+        if(this.GetComponent<SpriteRenderer>().flipX){
+            if(value > 0 && this.item)
+                this.item.transform.Translate(new Vector2(2f, 0f));
+        }
+        else{
+            if(value < 0 && this.item)
+                this.item.transform.Translate(new Vector2(-2.1f, 0f));
+        }
+
+        base.HorizontalMove(value);
     }
 }
