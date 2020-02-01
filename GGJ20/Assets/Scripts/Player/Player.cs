@@ -6,7 +6,7 @@ abstract public class Player : MonoBehaviour
 {
     private GameObject player;
     Rigidbody2D rig_body;
-    private Animator animator;
+    protected Animator animator;
 
     public float hor_val;
     protected string hor_key;
@@ -24,6 +24,10 @@ abstract public class Player : MonoBehaviour
     private int itemNum;
 
     protected string grab_key;
+
+    // HEALTH
+    public GameObject playerHealth;
+    private int lives = 3;
 
     public virtual void Start()
     {
@@ -75,24 +79,36 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
-        if (this.canGrab && Input.GetButtonDown(this.grab_key))
-        {
-            InteractAction();
-        }
-        else if (Input.GetButtonDown(this.grab_key) && this.item != null)
+        Debug.Log(this.canGrab);
+        if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             this.item = null;
             this.canGrab = false;
+
+            this.animator.SetTrigger("PutDown");
+        }
+        else if (this.canGrab && Input.GetButtonDown(this.grab_key))
+        {
+            InteractAction();
         }
     }
 
     abstract protected void InteractAction();
 
 
-    protected void HorizontalMove(float value)
+    protected virtual void HorizontalMove(float value)
     {
         this.player.transform.Translate(new Vector3(value, 0, 0));
+
+        if(value < 0)
+        {
+            this.player.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+        {
+            this.player.GetComponent<SpriteRenderer>().flipX = false;
+        }
     }
 
     protected void VerticalMove(float value)
@@ -104,38 +120,59 @@ abstract public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Floor"))
+        if (collision.gameObject.CompareTag("Floor") || collision.gameObject.CompareTag("Box"))
         {
             this.jumping = false;
             this.animator.SetBool("Jumping", false);
+        }
+        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box")))
+        {
+            this.canGrab = true;
+            this.colliding_item = collision.gameObject;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        //TODO Change tag name
-        if (!this.canGrab && (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Door") || collision.gameObject.CompareTag("Box")))
+        if (!this.canGrab && (collision.gameObject.CompareTag("Switch") || collision.gameObject.CompareTag("DoorLock") || collision.gameObject.CompareTag("Door")))
         {
             this.canGrab = true;
             this.colliding_item = collision.gameObject;
         }
         else if (collision.gameObject.CompareTag("Acid"))
         {
-            Destroy(this.player);
+            Damage();
         }
-        else if (collision.gameObject.CompareTag("Item"))
-        {
-            Destroy(collision.gameObject);
-            this.itemNum++;
-        }
-
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
         //TODO Change tag name
         if (collision.gameObject.CompareTag("Grab") || collision.gameObject.CompareTag("Box"))
         {
+            this.canGrab = false;
+            this.colliding_item = null;
+        }
+    }
+
+    public void Damage()
+    {
+        this.lives--;
+        int i = 0;
+
+        foreach (Transform child in this.playerHealth.transform)
+        {
+            if (this.lives == i)
+            {
+                child.gameObject.SetActive(false);
+                break;
+            }
+            i++;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision) {
+        if(collision.gameObject.CompareTag("DoorLock")) {
             this.canGrab = false;
             this.colliding_item = null;
         }
