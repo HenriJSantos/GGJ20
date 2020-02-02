@@ -69,8 +69,28 @@ public class Player2 : Player
         if (damaged)
             return;
 
-        base.Damage();
-
         GameVars.player2Health--;
+
+        if (GameVars.player2Health == 0)
+        {
+            this.damaged = true;
+            this.animator.SetTrigger("Dead");
+
+            var playersBehaviour = FindObjectsOfType<Player>();
+
+            foreach (var behaviour in playersBehaviour)
+            {
+                behaviour.enabled = false;
+            }
+
+            return;
+        }
+
+        if (this.item)
+        {
+            PutDownItem();
+        }
+
+        base.Damage();
     }
 }

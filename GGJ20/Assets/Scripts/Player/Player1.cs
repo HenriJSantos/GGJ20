@@ -33,8 +33,23 @@ public class Player1 : Player
         if (damaged)
             return;
 
-        base.Damage();
-
         GameVars.player1Health--;
+
+        if (GameVars.player1Health == 0)
+        {
+            this.damaged = true;
+            this.animator.SetTrigger("Dead");
+
+            var playersBehaviour = FindObjectsOfType<Player>();
+
+            foreach (var behaviour in playersBehaviour)
+            {
+                behaviour.enabled = false;
+            }
+
+            return;
+        }
+
+        base.Damage();
     }
 }
