@@ -58,7 +58,7 @@ public class Player2 : Player
         }
         else{
             if(value < 0 && this.item)
-                this.item.transform.Translate(new Vector2(-2.1f, 0f));
+                this.item.transform.Translate(new Vector2(-2f, 0f));
         }
 
         base.HorizontalMove(value);
