@@ -31,6 +31,10 @@ public class Player2 : Player
 
             Rigidbody2D rb = this.item.GetComponent<Rigidbody2D>();
             rb.bodyType = RigidbodyType2D.Kinematic;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            
+            this.item.tag = "Held";
+            this.item.layer = 12; //Held
             
             if(this.GetComponent<SpriteRenderer>().flipX){
                 this.item.transform.Translate(new Vector2(-1f, 1f));
