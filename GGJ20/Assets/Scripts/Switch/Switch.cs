@@ -18,21 +18,6 @@ public class Switch : MonoBehaviour
         this.interruptor.sprite = this.locked;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision) 
-    {
-        if (collision.gameObject.CompareTag("Player1") && this.isLocked)
-        {
-            this.isLocked = false;
-            this.interruptor.sprite = this.unlocked;
-            GameObject[] acid_waters = GameObject.FindGameObjectsWithTag("Acid");
-
-            for (int i = 0; i < acid_waters.Length; i++) {
-                Destroy(acid_waters[i]);     
-			}
-
-        }
-    }
-
     public void unlockSwitch(){
         if (this.isLocked)
         {
