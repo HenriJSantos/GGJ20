@@ -83,6 +83,9 @@ abstract public class Player : MonoBehaviour
         if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            this.item.tag = "Box";
+            this.item.layer = 0; //Default
+            this.item.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
             this.item = null;
             this.canGrab = false;
 

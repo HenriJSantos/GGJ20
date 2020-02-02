@@ -11,6 +11,7 @@ TagManager:
   - Player2
   - Door
   - Box
+  - Held
   - Acid
   - Switch
   - DoorLock
@@ -27,7 +28,7 @@ TagManager:
   - Player2
   - Door
   - Background
-  - 
+  - Held
   - 
   - 
   - 
