@@ -38,7 +38,7 @@ public class Menu : MonoBehaviour
 
     public void LoadScene(string sceneName)
     {
-        if(sceneName == "Game")
+        if(sceneName == "Story")
         {
             Destroy(musicClone.gameObject);
         }
