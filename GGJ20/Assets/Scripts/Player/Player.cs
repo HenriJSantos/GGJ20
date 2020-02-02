@@ -25,14 +25,15 @@ abstract public class Player : MonoBehaviour
 
     protected string grab_key;
 
-    // HEALTH
-    public GameObject playerHealth;
-    private int lives = 3;
+    private Vector3 initialPosition;
+
+    protected bool damaged;
 
     public virtual void Start()
     {
         this.player = this.gameObject;
-        transform.position = transform.position + new Vector3(GameVars.positionOffset,0,0);
+        initialPosition = transform.position + new Vector3(GameVars.positionOffset, 0, 0);
+        transform.position = initialPosition;
         this.rig_body = this.gameObject.GetComponent<Rigidbody2D>();
         this.animator = this.gameObject.GetComponent<Animator>();
 
@@ -44,6 +45,8 @@ abstract public class Player : MonoBehaviour
 
         this.colliding_item = null;
         this.itemNum = 0;
+
+        damaged = false;
     }
 
     // Update is called once per frame
@@ -155,20 +158,11 @@ abstract public class Player : MonoBehaviour
         }
     }
 
-    public void Damage()
+    public virtual void Damage()
     {
-        this.lives--;
-        int i = 0;
-
-        foreach (Transform child in this.playerHealth.transform)
-        {
-            if (this.lives == i)
-            {
-                child.gameObject.SetActive(false);
-                break;
-            }
-            i++;
-        }
+        damaged = true;
+        this.transform.position = this.initialPosition;
+        Invoke("Revive", .5f);
     }
 
     private void OnTriggerExit2D(Collider2D collision) {
@@ -176,5 +170,10 @@ abstract public class Player : MonoBehaviour
             this.canGrab = false;
             this.colliding_item = null;
         }
+    }
+
+    private void Revive()
+    {
+        damaged = false;
     }
 }
