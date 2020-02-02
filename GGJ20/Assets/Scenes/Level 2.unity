@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scene: Level 7
-  offset: 23
+  offset: 0
 --- !u!61 &2176912
 BoxCollider2D:
   m_ObjectHideFlags: 0

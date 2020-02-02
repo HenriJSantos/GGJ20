@@ -1887,7 +1887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f477e1edcefd7540b8b8c6dfe83e2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scene: Level 1
+  scene: Level 2
   offset: 23
 --- !u!61 &539328406
 BoxCollider2D:
