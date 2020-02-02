@@ -9,6 +9,9 @@ public class Menu : MonoBehaviour
     public GameObject menu;
     public GameObject canvas;
 
+    public GameObject music;
+    private GameObject musicClone;
+
     private void Start()
     {
         if (started && SceneManager.GetActiveScene().name == "Menu")
@@ -21,14 +24,25 @@ public class Menu : MonoBehaviour
 
             menu.SetActive(true);
         }
-        else
+        else if(!started)
         {
+            if(music != null)
+            {
+                musicClone = Instantiate(music, new Vector3(0, 0, 0), Quaternion.identity);
+                DontDestroyOnLoad(musicClone);
+            }
+
             started = true;
         }
     }
 
     public void LoadScene(string sceneName)
     {
+        if(sceneName == "Game")
+        {
+            Destroy(musicClone.gameObject);
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 
