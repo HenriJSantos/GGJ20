@@ -14,7 +14,7 @@ public class Story : MonoBehaviour
         {
             StartCoroutine(ActiveImage(images[i], i * 7.5f));
         }
-        Invoke("NextScene", 33);
+        Invoke("NextScene", 34);
     }
 
     IEnumerator ActiveImage(GameObject image, float delay)
