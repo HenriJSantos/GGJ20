@@ -4225,7 +4225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d184d398b149bd34dabd5926d892e6c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextScene: Level 0
+  nextScene: Level 2
   unlocked: {fileID: 21300000, guid: 0ff2ff68d73c3df43850dda5ffb771d5, type: 3}
   locked: {fileID: 21300000, guid: e81e26d8735b81c41a8925ac107d9022, type: 3}
   open: {fileID: 21300000, guid: 43566be45ec830f44bf93730698f191d, type: 3}

@@ -9,7 +9,9 @@ public class SceneProgress : MonoBehaviour
     public int offset;
     private void OnTriggerEnter2D(Collider2D collision) 
     {
-        GameVars.positionOffset = offset;
-        SceneManager.LoadScene(scene);
+        if(collision.CompareTag("Player1") || collision.CompareTag("Player2")){
+            GameVars.positionOffset = offset;
+            SceneManager.LoadScene(scene);
+        }
     }
 }
