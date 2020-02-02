@@ -11420,6 +11420,11 @@ PrefabInstance:
       propertyPath: hearts.Array.data[2]
       value: 
       objectReference: {fileID: 2000690080428125848}
+    - target: {fileID: 7237090684567811980, guid: 52e0a9c7d8066854894fca5146e04b42,
+        type: 3}
+      propertyPath: hor_val
+      value: 0.05
+      objectReference: {fileID: 0}
     - target: {fileID: 7237090684567811982, guid: 52e0a9c7d8066854894fca5146e04b42,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13136,6 +13141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7451357972951986330, guid: b0c8f1363203b094096cc4983b995633,
+        type: 3}
+      propertyPath: hor_val
+      value: 0.06
       objectReference: {fileID: 0}
     - target: {fileID: 7451357972951986334, guid: b0c8f1363203b094096cc4983b995633,
         type: 3}
