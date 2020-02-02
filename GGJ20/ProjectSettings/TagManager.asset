@@ -15,6 +15,7 @@ TagManager:
   - Acid
   - Switch
   - DoorLock
+  - Robot
   layers:
   - Default
   - TransparentFX
