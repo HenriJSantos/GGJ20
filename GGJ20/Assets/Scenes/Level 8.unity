@@ -900,6 +900,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792676220}
   - component: {fileID: 792676219}
+  - component: {fileID: 792676223}
   - component: {fileID: 792676222}
   - component: {fileID: 792676221}
   m_Layer: 0
@@ -1013,6 +1014,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unlocked: {fileID: 21300000, guid: ae3c9b7225d13e944b798eb654bc115e, type: 3}
   locked: {fileID: 21300000, guid: 95756cbc07488484cbc57389407642ff, type: 3}
+--- !u!114 &792676223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792676218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0dd55f585c9b147a8fa1f9e557e682, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 803084856}
+  isOff: {fileID: 21300000, guid: 95756cbc07488484cbc57389407642ff, type: 3}
+  isOn: {fileID: 21300000, guid: ae3c9b7225d13e944b798eb654bc115e, type: 3}
 --- !u!1 &803084854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,7 +1156,7 @@ Transform:
   - {fileID: 854534509}
   - {fileID: 1154378320}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &806899562
 GameObject:
@@ -1595,7 +1611,7 @@ PrefabInstance:
     - target: {fileID: 7237090684567811982, guid: 52e0a9c7d8066854894fca5146e04b42,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7237090684567811982, guid: 52e0a9c7d8066854894fca5146e04b42,
         type: 3}
