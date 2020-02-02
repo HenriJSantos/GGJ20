@@ -79,7 +79,6 @@ abstract public class Player : MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log(this.canGrab);
         if (Input.GetButtonDown(this.grab_key) && this.item != null)
         {
             this.item.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
