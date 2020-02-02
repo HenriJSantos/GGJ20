@@ -16,18 +16,18 @@ public class Door : MonoBehaviour
     private SpriteRenderer player2Light;
     private bool player1, player2;
 
-    private bool isLocked;
+    public bool isLocked;
     private bool isOpen;
     
     // Start is called before the first frame update
     void Start()
     {
-        isLocked = true;
         isOpen = false;
         this.door = this.gameObject.GetComponent<SpriteRenderer>();
         this.player1Light = this.gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         this.player2Light = this.gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
-        door.sprite = locked;
+        if(isLocked) door.sprite = locked;
+        else door.sprite = unlocked;
         
         player1 = false;
         player2 = false;
