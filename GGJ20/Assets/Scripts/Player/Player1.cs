@@ -27,4 +27,14 @@ public class Player1 : Player
             door.Enter();
         }
     }
+
+    public override void Damage()
+    {
+        if (damaged)
+            return;
+
+        base.Damage();
+
+        GameVars.player1Health--;
+    }
 }

@@ -63,4 +63,14 @@ public class Player2 : Player
 
         base.HorizontalMove(value);
     }
+
+    public override void Damage()
+    {
+        if (damaged)
+            return;
+
+        base.Damage();
+
+        GameVars.player2Health--;
+    }
 }
