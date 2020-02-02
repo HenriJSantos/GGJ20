@@ -16,6 +16,7 @@ abstract public class Player : MonoBehaviour
 
     private bool jumping;
     protected bool canGrab;
+    protected bool canDeactivate;
 
     protected GameObject colliding_item;
 
@@ -42,6 +43,7 @@ abstract public class Player : MonoBehaviour
 
         this.jumping = false;
         this.canGrab = false;
+        this.canDeactivate = false;
 
         this.colliding_item = null;
         this.itemNum = 0;
@@ -86,7 +88,7 @@ abstract public class Player : MonoBehaviour
         {
             PutDownItem();
         }
-        else if (this.canGrab && Input.GetButtonDown(this.grab_key))
+        else if ((this.canGrab || this.canDeactivate) && Input.GetButtonDown(this.grab_key))
         {
             InteractAction();
         }
@@ -141,6 +143,11 @@ abstract public class Player : MonoBehaviour
         {
             Damage();
         }
+        else if (collision.gameObject.CompareTag("Robot"))
+        {
+            this.canDeactivate = true;
+            this.colliding_item = collision.gameObject;
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -163,6 +170,10 @@ abstract public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision) {
         if(collision.gameObject.CompareTag("DoorLock")) {
             this.canGrab = false;
+            this.colliding_item = null;
+        }
+        if(collision.gameObject.CompareTag("Robot")) {
+            this.canDeactivate = false;
             this.colliding_item = null;
         }
     }

@@ -26,6 +26,12 @@ public class Player1 : Player
             Door door = this.colliding_item.GetComponent<Door>();
             door.Enter();
         }
+        else if(this.colliding_item.CompareTag("Robot")) {
+            Robot robot = this.colliding_item.GetComponent<Robot>();
+            robot.deactivate();
+            Debug.Log("Robutt");
+        }
+        Debug.Log("Tried");
     }
 
     public override void Damage()
