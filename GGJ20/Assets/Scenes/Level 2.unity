@@ -1611,6 +1611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hor_val: 0.05
   ver_val: 3
+  playerHealth: {fileID: 0}
 --- !u!212 &502348864
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3474,6 +3475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hor_val: 0.05
   ver_val: 2.5
+  playerHealth: {fileID: 0}
 --- !u!212 &975664842
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3604,7 +3606,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!212 &978969147
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5508,7 +5510,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 5
 --- !u!212 &1683717651
 SpriteRenderer:
   m_ObjectHideFlags: 0
